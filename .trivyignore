@@ -1,0 +1,9 @@
+# The image is used in CI and has a lot of requirements to the root dir, skip this check
+AVD-DS-0002
+
+# These are indirect deps of ent.go that have not been upgraded to the latest version
+# https://github.com/ent/ent/blob/master/go.mod
+# github.com/hashicorp/hcl/v2 v2.13.0 // indirect
+CVE-2021-38561
+# github.com/zclconf/go-cty v1.8.0 // indirect
+CVE-2020-29652

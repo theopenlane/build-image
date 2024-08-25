@@ -1,0 +1,14 @@
+version: '3'
+
+tasks:
+  build:
+    desc: builds the base-ci docker image
+    cmds:
+      - docker build -f Dockerfile . -t base-ci-image:dev
+
+  precommit-full:
+    desc: Lint the project against all files
+    cmds:
+      - pre-commit install && pre-commit install-hooks
+      - pre-commit autoupdate
+      - pre-commit run --show-diff-on-failure --color=always --all-files
