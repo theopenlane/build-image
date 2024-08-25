@@ -1,0 +1,83 @@
+env:
+  APP_NAME: ${BUILDKITE_PIPELINE_SLUG}
+  IMAGE_REPO: ghcr.io/theopenlane/${APP_NAME}
+  IMAGE_TAG: ${BUILDKITE_BUILD_NUMBER}-${BUILDKITE_COMMIT:0:8}
+
+steps:
+  - group: ":docker: Image Build"
+    key: "image-build"
+    steps:
+      - label: ":docker: docker pr build"
+        key: "docker-pr-build"
+        if: build.branch != "main" && build.tag == null
+        commands: |
+          #!/bin/bash
+          ls
+        plugins:
+          - theopenlane/docker-metadata#v1.0.0:
+              images:
+                - "${IMAGE_REPO}"
+              extra_tags:
+                - "${IMAGE_TAG}"
+          - theopenlane/container-build#v1.0.0:
+              dockerfile: Dockerfile
+              push: false
+              build-args:
+                - NAME=${APP_NAME}
+          - equinixmetal-buildkite/trivy#v1.18.5:
+              severity: CRITICAL,HIGH
+              ignore-unfixed: true
+              security-checks: config,secret,vuln
+              skip-files: 'cosign.key'
+      - label: ":docker: docker build and publish"
+        key: "docker-build"
+        if: build.branch == "main"
+        commands: |
+          #!/bin/bash
+          ls
+        plugins:
+          - docker-login#v3.0.0:
+              username: theopenlane-bender
+              password-env: SECRET_GHCR_PUBLISH_TOKEN
+              server: ghcr.io
+          - theopenlane/docker-metadata#v1.0.0:
+              images:
+                - "${IMAGE_REPO}"
+              extra_tags:
+                - "${IMAGE_TAG}"
+          - theopenlane/container-build#v1.0.0:
+              dockerfile: Dockerfile
+              push: true
+              build-args:
+                - NAME=${APP_NAME}
+          - equinixmetal-buildkite/trivy#v1.18.5:
+              severity: CRITICAL,HIGH
+              ignore-unfixed: true
+              security-checks: config,secret,vuln
+              skip-files: 'cosign.key'
+      - label: ":docker: docker build and publish"
+        key: "docker-build-and-tag"
+        if: build.tag != null
+        commands: |
+          #!/bin/bash
+          ls
+        plugins:
+          - docker-login#v3.0.0:
+              username: theopenlane-bender
+              password-env: SECRET_GHCR_PUBLISH_TOKEN
+              server: ghcr.io
+          - theopenlane/docker-metadata#v1.0.0:
+              images:
+                - "${IMAGE_REPO}"
+              extra_tags:
+                - "${BUILDKITE_TAG}"
+          - theopenlane/container-build#v1.0.0:
+              dockerfile: Dockerfile
+              push: true
+              build-args:
+                - NAME=${APP_NAME}
+          - equinixmetal-buildkite/trivy#v1.18.5:
+              severity: CRITICAL,HIGH
+              ignore-unfixed: true
+              security-checks: config,secret,vuln
+              skip-files: 'cosign.key'
