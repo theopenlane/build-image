@@ -1,4 +1,4 @@
-FROM golang:1.23.1-alpine
+FROM golang:1.23.2-alpine
 
 RUN apk add git npm --no-cache  && apk cache clean \
 	&& go install github.com/go-task/task/v3/cmd/task@latest \
