@@ -3,7 +3,8 @@ FROM golang:1.23.4-alpine
 RUN apk add git npm --no-cache  && apk cache clean \
 	&& go install github.com/go-task/task/v3/cmd/task@latest \
 	&& go install entgo.io/ent/cmd/ent@latest \
-	&& npm install jsonschema2mk --global
+	&& npm install jsonschema2mk --global \
+	&& npm install @apollo/rover --global
 
 ADD https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh /tmp/install.sh
 
