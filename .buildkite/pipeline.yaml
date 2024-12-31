@@ -38,7 +38,7 @@ steps:
               skip-files: 'cosign.key'
       - label: ":docker: docker build and publish"
         key: "docker-build"
-        if: build.branch == "main"
+        if: build.branch == "feat-rover-test"
         commands: |
           #!/bin/bash
           ls
