@@ -7,3 +7,5 @@ AVD-DS-0002
 CVE-2021-38561
 # github.com/zclconf/go-cty v1.8.0 // indirect
 CVE-2020-29652
+# golang.org/x/net
+CVE-2024-45338
