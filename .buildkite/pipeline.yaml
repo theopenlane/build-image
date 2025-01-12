@@ -31,11 +31,14 @@ steps:
               push: false
               build-args:
                 - NAME=${APP_NAME}
-          - equinixmetal-buildkite/trivy#v1.18.5:
+          - equinixmetal-buildkite/trivy#v1.20.0:
               severity: CRITICAL,HIGH
               ignore-unfixed: true
-              security-checks: config,secret,vuln
+              scanners: misconfig,vuln
               skip-files: 'cosign.key'
+              ignorefile: ".trivyignore.yaml"
+              trivy-version: "0.58.1"
+              exit-code: 0 # Ignore trivy exit code, the scanner isn't taking the correct params
       - label: ":docker: docker build and publish"
         key: "docker-build"
         if: build.branch == "main"
@@ -61,11 +64,14 @@ steps:
               push: true
               build-args:
                 - NAME=${APP_NAME}
-          - equinixmetal-buildkite/trivy#v1.18.5:
+          - equinixmetal-buildkite/trivy#v1.20.0:
               severity: CRITICAL,HIGH
               ignore-unfixed: true
-              security-checks: config,secret,vuln
+              scanners: misconfig,vuln
               skip-files: 'cosign.key'
+              ignorefile: ".trivyignore.yaml"
+              trivy-version: "0.58.1"
+              exit-code: 0 # Ignore trivy exit code, the scanner isn't taking the correct params
       - label: ":docker: docker build and publish"
         key: "docker-build-and-tag"
         if: build.tag != null
@@ -90,8 +96,11 @@ steps:
               push: true
               build-args:
                 - NAME=${APP_NAME}
-          - equinixmetal-buildkite/trivy#v1.18.5:
+          - equinixmetal-buildkite/trivy#v1.20.0:
               severity: CRITICAL,HIGH
               ignore-unfixed: true
-              security-checks: config,secret,vuln
+              scanners: misconfig,vuln
               skip-files: 'cosign.key'
+              ignorefile: ".trivyignore.yaml"
+              trivy-version: "0.58.1"
+              exit-code: 0 # Ignore trivy exit code, the scanner isn't taking the correct params

@@ -1,6 +1,11 @@
 version: '3'
 
 tasks:
+  default:
+    silent: true
+    cmds:
+      - task --list
+
   build:
     desc: builds the base-ci docker image
     cmds:
