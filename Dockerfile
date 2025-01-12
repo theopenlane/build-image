@@ -7,7 +7,8 @@ RUN apk add git npm --no-cache  && apk cache clean \
 	&& go install github.com/buildkite/terminal-to-html/v3/cmd/terminal-to-html@latest \
 	&& apk --update add jq \
 	&& npm install jsonschema2mk --global \
-	&& npm install @apollo/rover --global
+	&& npm install @apollo/rover --global 
+
 
 ADD https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh /tmp/install.sh
 
@@ -16,6 +17,9 @@ RUN chmod +x /tmp/install.sh && /tmp/install.sh v1.63.4
 COPY --from=vektra/mockery:v2 /usr/local/bin/mockery /bin/mockery
 
 COPY --from=hairyhenderson/gomplate:stable /gomplate /bin/gomplate
+
+
+COPY --from=buildkite/agent:3 /usr/local/bin/buildkite-agent /bin/buildkite-agent
 
 COPY . .
 
