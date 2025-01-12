@@ -36,7 +36,7 @@ steps:
               ignore-unfixed: true
               security-checks: config,secret,vuln
               skip-files: 'cosign.key'
-              skip-dirs: '/go/pkg/mod/github.com/spf13/afero@v1.10.0/gcsfs/*'
+              ignorefile: ".trivyignore.yaml"
       - label: ":docker: docker build and publish"
         key: "docker-build"
         if: build.branch == "main"
@@ -67,7 +67,7 @@ steps:
               ignore-unfixed: true
               security-checks: config,secret,vuln
               skip-files: 'cosign.key'
-              skip-dirs: '/go/pkg/mod/github.com/spf13/afero@v1.10.0/gcsfs/*'
+              ignorefile: ".trivyignore.yaml"
       - label: ":docker: docker build and publish"
         key: "docker-build-and-tag"
         if: build.tag != null
@@ -97,4 +97,4 @@ steps:
               ignore-unfixed: true
               security-checks: config,secret,vuln
               skip-files: 'cosign.key'
-              skip-dirs: '/go/pkg/mod/github.com/spf13/afero@v1.10.0/gcsfs/*'
+              ignorefile: ".trivyignore.yaml"

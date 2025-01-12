@@ -1,0 +1,13 @@
+vulnerabilities:
+  - id: CVE-2021-38561
+  - id: CVE-2020-29652
+  - id: CVE-2024-45338
+  - id: CVE-2023-39325
+  - id: CVE-2024-45337
+
+misconfigurations:
+  - id: AVD-DS-0002
+
+secrets:
+  - id: gcp-service-account
+  - id: private-key
