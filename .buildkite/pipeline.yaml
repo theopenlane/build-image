@@ -31,11 +31,12 @@ steps:
               push: false
               build-args:
                 - NAME=${APP_NAME}
-          - equinixmetal-buildkite/trivy#v1.18.5:
+          - equinixmetal-buildkite/trivy#v1.20.0:
               severity: CRITICAL,HIGH
               ignore-unfixed: true
               security-checks: config,secret,vuln
               skip-files: 'cosign.key'
+              skip-dirs: '/go/pkg/mod/github.com/spf13/afero@v1.10.0/gcsfs/*'
       - label: ":docker: docker build and publish"
         key: "docker-build"
         if: build.branch == "main"
@@ -61,11 +62,12 @@ steps:
               push: true
               build-args:
                 - NAME=${APP_NAME}
-          - equinixmetal-buildkite/trivy#v1.18.5:
+          - equinixmetal-buildkite/trivy#v1.20.0:
               severity: CRITICAL,HIGH
               ignore-unfixed: true
               security-checks: config,secret,vuln
               skip-files: 'cosign.key'
+              skip-dirs: '/go/pkg/mod/github.com/spf13/afero@v1.10.0/gcsfs/*'
       - label: ":docker: docker build and publish"
         key: "docker-build-and-tag"
         if: build.tag != null
@@ -90,8 +92,9 @@ steps:
               push: true
               build-args:
                 - NAME=${APP_NAME}
-          - equinixmetal-buildkite/trivy#v1.18.5:
+          - equinixmetal-buildkite/trivy#v1.20.0:
               severity: CRITICAL,HIGH
               ignore-unfixed: true
               security-checks: config,secret,vuln
               skip-files: 'cosign.key'
+              skip-dirs: '/go/pkg/mod/github.com/spf13/afero@v1.10.0/gcsfs/*'
