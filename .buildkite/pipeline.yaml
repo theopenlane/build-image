@@ -37,6 +37,7 @@ steps:
               scanners: misconfig,vuln
               skip-files: 'cosign.key'
               ignorefile: ".trivyignore.yaml"
+              trivy-version: "0.58.1"
               exit-code: 0 # Ignore trivy exit code, the scanner isn't taking the correct params
       - label: ":docker: docker build and publish"
         key: "docker-build"
@@ -69,6 +70,7 @@ steps:
               scanners: misconfig,vuln
               skip-files: 'cosign.key'
               ignorefile: ".trivyignore.yaml"
+              trivy-version: "0.58.1"
               exit-code: 0 # Ignore trivy exit code, the scanner isn't taking the correct params
       - label: ":docker: docker build and publish"
         key: "docker-build-and-tag"
@@ -100,4 +102,5 @@ steps:
               scanners: misconfig,vuln
               skip-files: 'cosign.key'
               ignorefile: ".trivyignore.yaml"
+              trivy-version: "0.58.1"
               exit-code: 0 # Ignore trivy exit code, the scanner isn't taking the correct params
