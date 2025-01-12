@@ -34,7 +34,7 @@ steps:
           - equinixmetal-buildkite/trivy#v1.20.0:
               severity: CRITICAL,HIGH
               ignore-unfixed: true
-              security-checks: config,vuln
+              scanners: misconfig,vuln
               skip-files: 'cosign.key'
               ignorefile: ".trivyignore.yaml"
       - label: ":docker: docker build and publish"
@@ -65,7 +65,7 @@ steps:
           - equinixmetal-buildkite/trivy#v1.20.0:
               severity: CRITICAL,HIGH
               ignore-unfixed: true
-              security-checks: config,vuln
+              scanners: misconfig,vuln
               skip-files: 'cosign.key'
               ignorefile: ".trivyignore.yaml"
       - label: ":docker: docker build and publish"
@@ -95,6 +95,6 @@ steps:
           - equinixmetal-buildkite/trivy#v1.20.0:
               severity: CRITICAL,HIGH
               ignore-unfixed: true
-              security-checks: config,vuln
+              scanners: misconfig,vuln
               skip-files: 'cosign.key'
               ignorefile: ".trivyignore.yaml"

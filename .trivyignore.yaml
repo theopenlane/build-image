@@ -8,6 +8,3 @@ vulnerabilities:
 misconfigurations:
   - id: AVD-DS-0002
 
-secrets:
-  - id: gcp-service-account
-  - id: private-key
