@@ -9,3 +9,6 @@ CVE-2021-38561
 CVE-2020-29652
 # golang.org/x/net
 CVE-2024-45338
+CVE-2023-39325
+# golang.org/x/crypto
+CVE-2024-45337
