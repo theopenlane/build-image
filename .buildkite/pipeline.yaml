@@ -21,7 +21,7 @@ steps:
               username: theopenlane-bender
               password-env: SECRET_GHCR_PUBLISH_TOKEN
               server: ghcr.io
-          - theopenlane/docker-metadata#v1.0.0:
+          - theopenlane/docker-metadata#v1.0.1:
               images:
                 - "${IMAGE_REPO}"
               extra_tags:
@@ -53,7 +53,7 @@ steps:
               username: theopenlane-bender
               password-env: SECRET_GHCR_PUBLISH_TOKEN
               server: ghcr.io
-          - theopenlane/docker-metadata#v1.0.0:
+          - theopenlane/docker-metadata#v1.0.1:
               images:
                 - "${IMAGE_REPO}"
               extra_tags:
@@ -86,7 +86,7 @@ steps:
               username: theopenlane-bender
               password-env: SECRET_GHCR_PUBLISH_TOKEN
               server: ghcr.io
-          - theopenlane/docker-metadata#v1.0.0:
+          - theopenlane/docker-metadata#v1.0.1:
               images:
                 - "${IMAGE_REPO}"
               extra_tags:
