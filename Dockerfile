@@ -13,7 +13,7 @@ ADD https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh /
 
 RUN chmod +x /tmp/install.sh && /tmp/install.sh v1.63.4
 
-COPY --from=vektra/mockery:v2 /usr/local/bin/mockery /bin/mockery
+COPY --from=vektra/mockery:v3 /usr/local/bin/mockery /bin/mockery
 
 COPY --from=hairyhenderson/gomplate:stable /gomplate /bin/gomplate
 
