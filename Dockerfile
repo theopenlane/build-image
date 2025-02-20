@@ -8,6 +8,11 @@ RUN apk add git npm --no-cache  && apk cache clean \
 	&& npm install jsonschema2mk --global \
 	&& npm install @apollo/rover --global 
 
+# gcc is required to support cgo
+RUN apk --no-cache add gcc musl-dev 
+
+# Set all directories as safe
+RUN git config --global --add safe.directory '*'
 
 ADD https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh /tmp/install.sh
 
