@@ -1,4 +1,4 @@
-FROM golang:1.23.6-alpine
+FROM golang:1.24.0-alpine
 
 RUN apk add git npm --no-cache  && apk cache clean \
 	&& go install github.com/go-task/task/v3/cmd/task@main \
@@ -16,7 +16,7 @@ RUN git config --global --add safe.directory '*'
 
 ADD https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh /tmp/install.sh
 
-RUN chmod +x /tmp/install.sh && /tmp/install.sh v1.63.4
+RUN chmod +x /tmp/install.sh && /tmp/install.sh v1.64.5
 
 COPY --from=vektra/mockery:v2 /usr/local/bin/mockery /bin/mockery
 
