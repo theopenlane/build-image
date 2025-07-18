@@ -10,7 +10,8 @@ RUN apk --no-cache add --virtual .build-deps \
         npm curl \
     && (go install github.com/go-task/task/v3/cmd/task@main \
     && go install entgo.io/ent/cmd/ent@latest \
-    && go install github.com/oNaiPs/go-generate-fast@latest) \
+    && go install github.com/oNaiPs/go-generate-fast@latest \
+    && go install github.com/mikefarah/yq/v4@latest) \
 	&& wait \
     && npm install -g jsonschema2mk \
     && npm install -g @apollo/rover \
@@ -29,7 +30,7 @@ COPY --from=buildkite/agent:3 /usr/local/bin/buildkite-agent /bin/buildkite-agen
 FROM golang:1.24.4-alpine
 
 RUN apk --no-cache add \
-		gcc musl-dev curl jq git npm
+		gcc musl-dev curl jq git npm github-cli bash
 
 # Copy only necessary files from the builder stage
 COPY --from=builder /bin/mockery /bin/mockery
@@ -42,4 +43,3 @@ RUN git config --global --add safe.directory '*'
 
 # Copy application source code
 COPY . .
-
