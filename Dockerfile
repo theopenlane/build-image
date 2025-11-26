@@ -16,7 +16,7 @@ RUN apk --no-cache add --virtual .build-deps \
     && npm install -g @apollo/rover \
     && curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh -o /tmp/install.sh \
     && chmod +x /tmp/install.sh \
-    && /tmp/install.sh v2.4.0 \
+    && /tmp/install.sh v2.6.2 \
     && apk del .build-deps \
     && rm -rf /tmp/* /var/cache/apk/*
 
