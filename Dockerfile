@@ -7,7 +7,7 @@ ARG BINDIR=/usr/local/bin/
 
 # Install dependencies and tools
 RUN apk --no-cache add --virtual .build-deps \
-        npm curl \
+        npm curl openssh-client \
     && (go install github.com/go-task/task/v3/cmd/task@main \
     && go install entgo.io/ent/cmd/ent@latest \
     && go install github.com/mikefarah/yq/v4@latest) \
