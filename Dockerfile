@@ -7,7 +7,7 @@ ARG BINDIR=/usr/local/bin/
 
 # Install dependencies and tools
 RUN apk --no-cache add --virtual .build-deps \
-        npm curl openssh-client \
+        npm curl \
     && (go install github.com/go-task/task/v3/cmd/task@main \
     && go install entgo.io/ent/cmd/ent@latest \
     && go install github.com/mikefarah/yq/v4@latest) \
@@ -29,7 +29,7 @@ COPY --from=buildkite/agent:3 /usr/local/bin/buildkite-agent /bin/buildkite-agen
 FROM golang:1.25.5-alpine
 
 RUN apk --no-cache add \
-		gcc musl-dev curl jq git npm github-cli bash
+		gcc musl-dev curl jq git npm github-cli bash openssh-client
 
 # Copy only necessary files from the builder stage
 COPY --from=builder /bin/mockery /bin/mockery
