@@ -9,7 +9,7 @@ ARG BINDIR=/usr/local/bin/
 RUN apk --no-cache add --virtual .build-deps \
         npm curl \
     && (go install github.com/go-task/task/v3/cmd/task@main \
-    && go install entgo.io/ent/cmd/ent@latest) \ 
+    && go install entgo.io/ent/cmd/ent@latest) \
 	&& wait \
     && npm install -g jsonschema2mk \
     && npm install -g @apollo/rover \
