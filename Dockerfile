@@ -10,7 +10,8 @@ RUN apk --no-cache add --virtual .build-deps \
         npm curl \
     && (go install github.com/go-task/task/v3/cmd/task@main \
     && go install entgo.io/ent/cmd/ent@latest \
-    && go install github.com/mikefarah/yq/v4@latest) \
+    # latest is broken on yq v4, so pinning to a known good version
+    && go install github.com/mikefarah/yq/v4@v4.49.2) \ 
 	&& wait \
     && npm install -g jsonschema2mk \
     && npm install -g @apollo/rover \
