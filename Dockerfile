@@ -9,12 +9,12 @@ ARG BINDIR=/usr/local/bin/
 RUN apk --no-cache add --virtual .build-deps \
         npm curl \
     && (go install github.com/go-task/task/v3/cmd/task@main \
-    && go install entgo.io/ent/cmd/ent@latest \
-    # latest is broken on yq v4, so pinning to a known good version
-    && go install github.com/mikefarah/yq/v4@v4.49.2) \ 
+    && go install entgo.io/ent/cmd/ent@latest) \ 
 	&& wait \
     && npm install -g jsonschema2mk \
     && npm install -g @apollo/rover \
+    && curl -sSfL https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -o /usr/local/bin/yq \
+    && chmod +x /usr/local/bin/yq \
     && curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh -o /tmp/install.sh \
     && chmod +x /tmp/install.sh \
     && /tmp/install.sh v2.6.2 \
