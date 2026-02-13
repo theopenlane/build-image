@@ -2,8 +2,10 @@ FROM golang:1.25.7-alpine AS builder
 
 # ensure the go install directory is in the PATH
 ARG GOBIN=/usr/local/bin/
-# ensure he golangci-lint install directory is in the PATH
+# ensure the golangci-lint install directory is in the PATH
 ARG BINDIR=/usr/local/bin/
+# ensure the bun install directory is in the PATH
+ENV BUN_INSTALL=/usr/local
 
 # Install dependencies and tools
 RUN apk --no-cache add --virtual .build-deps \
@@ -19,6 +21,7 @@ RUN apk --no-cache add --virtual .build-deps \
     && chmod +x /tmp/install.sh \
     && /tmp/install.sh v2.6.2 \
     && apk del .build-deps \
+	&& curl -fsSL https://bun.sh/install | bash \
     && rm -rf /tmp/* /var/cache/apk/*
 
 # Copy tools from other images
