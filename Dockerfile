@@ -9,7 +9,7 @@ ENV BUN_INSTALL=/usr/local
 
 # Install dependencies and tools
 RUN apk --no-cache add --virtual .build-deps \
-        npm curl \
+        npm curl bash \
     && (go install github.com/go-task/task/v3/cmd/task@main \
     && go install entgo.io/ent/cmd/ent@latest) \
 	&& wait \
