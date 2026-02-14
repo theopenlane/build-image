@@ -9,7 +9,7 @@ ENV BUN_INSTALL=/usr/local
 
 # Install dependencies and tools
 RUN apk --no-cache add --virtual .build-deps \
-        npm curl bash \
+        npm curl \
     && (go install github.com/go-task/task/v3/cmd/task@main \
     && go install entgo.io/ent/cmd/ent@latest) \
 	&& wait \
@@ -20,7 +20,7 @@ RUN apk --no-cache add --virtual .build-deps \
     && curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh -o /tmp/install.sh \
     && chmod +x /tmp/install.sh \
     && /tmp/install.sh v2.6.2 \
-	&& curl -fsSL https://bun.sh/install | bash \
+	&& curl -fsSL https://bun.sh/install | sh \
     && apk del .build-deps \
     && rm -rf /tmp/* /var/cache/apk/*
 
