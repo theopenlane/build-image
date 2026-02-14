@@ -20,7 +20,7 @@ RUN apk --no-cache add --virtual .build-deps \
     && curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh -o /tmp/install.sh \
     && chmod +x /tmp/install.sh \
     && /tmp/install.sh v2.6.2 \
-	&& curl -fsSL https://bun.sh/install | sh \
+	&& npm install -g bun \
     && apk del .build-deps \
     && rm -rf /tmp/* /var/cache/apk/*
 
