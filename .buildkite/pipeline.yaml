@@ -33,7 +33,7 @@ steps:
                 - NAME=${APP_NAME}
                 - --pull
                 - --no-cache
-          - equinixmetal-buildkite/trivy#v1.20.0:
+          - equinixmetal-buildkite/trivy#v1.21.0:
               severity: CRITICAL,HIGH
               ignore-unfixed: true
               scanners: misconfig,vuln
@@ -68,7 +68,7 @@ steps:
                 - NAME=${APP_NAME}
                 - --pull
                 - --no-cache
-          - equinixmetal-buildkite/trivy#v1.20.0:
+          - equinixmetal-buildkite/trivy#v1.21.0:
               severity: CRITICAL,HIGH
               ignore-unfixed: true
               scanners: misconfig,vuln
@@ -102,7 +102,7 @@ steps:
                 - NAME=${APP_NAME}
                 - --pull
                 - --no-cache
-          - equinixmetal-buildkite/trivy#v1.20.0:
+          - equinixmetal-buildkite/trivy#v1.21.0:
               severity: CRITICAL,HIGH
               ignore-unfixed: true
               scanners: misconfig,vuln
