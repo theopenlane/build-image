@@ -37,9 +37,9 @@ steps:
               severity: CRITICAL,HIGH
               ignore-unfixed: true
               scanners: misconfig,vuln
-              skip-files: 'cosign.key'
+              skip-files: "cosign.key"
               ignorefile: ".trivyignore.yaml"
-              trivy-version: "0.58.1"
+              trivy-version: "0.69.2"
               exit-code: 0 # Ignore trivy exit code, the scanner isn't taking the correct params
       - label: ":docker: docker build and publish"
         key: "docker-build"
@@ -72,10 +72,10 @@ steps:
               severity: CRITICAL,HIGH
               ignore-unfixed: true
               scanners: misconfig,vuln
-              skip-files: 'cosign.key'
+              skip-files: "cosign.key"
               ignorefile: ".trivyignore.yaml"
-              trivy-version: "0.58.1"
               exit-code: 0 # Ignore trivy exit code, the scanner isn't taking the correct params
+              trivy-version: "0.69.2"
       - label: ":docker: docker build and publish"
         key: "docker-build-and-tag"
         if: build.tag != null
@@ -106,7 +106,7 @@ steps:
               severity: CRITICAL,HIGH
               ignore-unfixed: true
               scanners: misconfig,vuln
-              skip-files: 'cosign.key'
+              skip-files: "cosign.key"
               ignorefile: ".trivyignore.yaml"
-              trivy-version: "0.58.1"
+              trivy-version: "0.69.2"
               exit-code: 0 # Ignore trivy exit code, the scanner isn't taking the correct params
