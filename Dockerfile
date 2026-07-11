@@ -1,4 +1,4 @@
-FROM golang:1.26.4-alpine AS builder
+FROM golang:1.26.5-alpine AS builder
 
 # ensure the go install directory is in the PATH
 ARG GOBIN=/usr/local/bin/
@@ -19,7 +19,7 @@ RUN apk --no-cache add --virtual .build-deps \
     && chmod +x /usr/local/bin/yq \
     && curl -sSfL https://golangci-lint.run/install.sh -o /tmp/install.sh \
     && chmod +x /tmp/install.sh \
-    && /tmp/install.sh v2.12.1 \
+    && /tmp/install.sh v2.12.2 \
 	&& npm install -g bun \
     && apk del .build-deps \
     && rm -rf /tmp/* /var/cache/apk/*
@@ -30,7 +30,7 @@ COPY --from=hairyhenderson/gomplate:stable /gomplate /bin/gomplate
 COPY --from=buildkite/agent:3 /usr/local/bin/buildkite-agent /bin/buildkite-agent
 
 # Final stage
-FROM golang:1.26.4-alpine
+FROM golang:1.26.5-alpine
 
 RUN apk --no-cache add \
 		gcc musl-dev curl jq git npm github-cli bash openssh-client
