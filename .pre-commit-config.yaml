@@ -10,7 +10,7 @@ repos:
     rev: v0.21.0
     hooks:
       - id: yamlfmt
-  - repo: https://github.com/crate-ci/typos
-    rev: v1.29.4
+  - repo: https://github.com/adhtruong/mirrors-typos
+    rev: v1.49.0
     hooks:
       - id: typos
