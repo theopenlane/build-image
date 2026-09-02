@@ -13,7 +13,7 @@ RUN apk --no-cache add --virtual .build-deps \
     && (go install github.com/go-task/task/v3/cmd/task@main \
     && go install entgo.io/ent/cmd/ent@latest) \
 	&& wait \
-    && npm install -g jsonschema2mk \
+    && npm install -g jsonschema2mk@2.2.3 \
     && npm install -g @apollo/rover \
     && curl -sSfL https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -o /usr/local/bin/yq \
     && chmod +x /usr/local/bin/yq \
