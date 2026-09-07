@@ -27,7 +27,7 @@ RUN apk --no-cache add --virtual .build-deps \
 # Copy tools from other images
 COPY --from=vektra/mockery:3 /usr/local/bin/mockery /bin/mockery
 COPY --from=hairyhenderson/gomplate:stable /gomplate /bin/gomplate
-COPY --from=buildkite/agent:3 /usr/local/bin/buildkite-agent /bin/buildkite-agent
+COPY --from=buildkite/agent:4 /usr/local/bin/buildkite-agent /bin/buildkite-agent
 
 # Final stage
 FROM golang:1.27.1-alpine
