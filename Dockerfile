@@ -1,4 +1,4 @@
-FROM golang:1.27.1-alpine AS builder
+FROM golang:1.27.2-alpine AS builder
 
 # ensure the go install directory is in the PATH
 ARG GOBIN=/usr/local/bin/
@@ -30,7 +30,7 @@ COPY --from=hairyhenderson/gomplate:v5.2.0 /gomplate /bin/gomplate
 COPY --from=buildkite/agent:4.0 /usr/local/bin/buildkite-agent /bin/buildkite-agent
 
 # Final stage
-FROM golang:1.27.1-alpine
+FROM golang:1.27.2-alpine
 
 RUN apk --no-cache add \
 		gcc musl-dev curl jq git npm github-cli bash openssh-client
