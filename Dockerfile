@@ -25,7 +25,7 @@ RUN apk --no-cache add --virtual .build-deps \
     && rm -rf /tmp/* /var/cache/apk/*
 
 # Copy tools from other images
-COPY --from=vektra/mockery:3.8 /usr/local/bin/mockery /bin/mockery
+COPY --from=vektra/mockery:3.9 /usr/local/bin/mockery /bin/mockery
 COPY --from=hairyhenderson/gomplate:v5.3.0 /gomplate /bin/gomplate
 COPY --from=buildkite/agent:4.3 /usr/local/bin/buildkite-agent /bin/buildkite-agent
 
